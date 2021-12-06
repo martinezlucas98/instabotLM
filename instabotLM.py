@@ -18,7 +18,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.service import Service
 
-CHROMEDRIVERSERVICE = Service("./chromedriver")
+CHROMEDRIVERPATH = "./chromedriver"
+CHROMEDRIVERSERVICE = Service(CHROMEDRIVERPATH)
 BOTINFO = '''v1.0.0
 (2021)
 Bot made by: Lucas Martinez
@@ -169,7 +170,12 @@ def main():
 
     f.close()
     try:
-        driver = webdriver.Chrome(service=CHROMEDRIVERSERVICE)
+        try:
+            driver = webdriver.Chrome(service=CHROMEDRIVERSERVICE)
+        except:
+            # For older versions of Selenium
+            driver = webdriver.Chrome(CHROMEDRIVERPATH)
+            
         driver.get("https://instagram.com")
         # driver.maximize_window()
     except Exception as e:
