@@ -73,11 +73,12 @@ def comment_post(url, tags, quantity, like, follow):
     if (follow):
         print("Trying to follow user...")
         try:
-            wait.until(
+            follow_div = wait.until(
                 EC.element_to_be_clickable(
-                    (By.CLASS_NAME, "sqdOP yWX7d y3zKF")  # not following yet
+                    (By.CLASS_NAME, "bY2yH") # not following yet
                 )
-            ).click()
+            )
+            follow_div.find_element(By.XPATH, "//button[1]").click() # "sqdOP yWX7d y3zKF"
             print("Follow = OK!")
         except:
             print("You already follow this user")
