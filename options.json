@@ -1,0 +1,12 @@
+{
+    "username": "insert_your_username_without_@",
+    "postUrl": "https://www.instagram.com/p/[INSERT POST URL]",
+    "comments": 10,
+    "tags": [
+        "insert_username_without_@",
+        "insert_username_without_@",
+        "insert_username_without_@"
+    ],
+    "follow":"yes",
+    "like":"yes"
+}
