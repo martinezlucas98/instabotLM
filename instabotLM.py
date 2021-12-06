@@ -52,6 +52,8 @@ def login(uname, pwd):
             (By.CSS_SELECTOR, ".sqdOP.L3NKy.y3zKF")
         )
     ).click()
+    
+    print("Login: OK!")
 
 
 def str_tags(tags):
@@ -102,7 +104,8 @@ def comment_post(url, tags, quantity, like, follow):
             print("Error? :: Like exception")
 
     try:
-        for _ in range(0, quantity):
+        print("The bot is commenting...")
+        for i in range(0, quantity):
             wait.until(
                 EC.element_to_be_clickable(  # EC.presence_of_element_located(
                     (By.XPATH,
@@ -124,7 +127,7 @@ def comment_post(url, tags, quantity, like, follow):
             time.sleep(sleep_time)
 
     except Exception as e:
-        print("Exception location: for _ in range(0, quantity)")
+        print("Exception location: for _ in range(0, quantity) with quantity = "+str(quantity))
         print("An ERROR has occured:")
         print("INFO: Please check if the URL is a valid URL")
         print(e)
@@ -137,16 +140,17 @@ def main():
 
     args = sys.argv[1:]
     if (len(args)):
-        COMMENTINTERVAL = args[0]
-        print(COMMENTINTERVAL)
+        COMMENTINTERVAL = float(args[0])
 
         if (len(args)>1):
-            WAITTIME = args[1]
-            print (WAITTIME)
+            WAITTIME = float(args[1])
 
     has_error = False
 
     print(BOTINFO)
+    print("\n\nConfigurations:")
+    print("\tComment interval: "+str(COMMENTINTERVAL)+"seconds")
+    print("\tPage load wait time: "+str(WAITTIME)+"seconds\n")
 
     pwd = getpass()
     f = open('./options.json', 'r')
